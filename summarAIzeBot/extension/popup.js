@@ -6,7 +6,7 @@ btn.addEventListener("click", function() {
         var url = tabs[0].url;
         var xhr = new XMLHttpRequest();
         chrome.extension.getBackgroundPage().console.log('foo');
-        xhr.open("GET", "http://127.0.0.1:5000/summary?url=" + url, true);
+        xhr.open("GET", "http://127.0.0.1:5000/text?url=" + url, true);
         xhr.onload = function() {
             var text = xhr.responseText;
             const p = document.getElementById("output");
