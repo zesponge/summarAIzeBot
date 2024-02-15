@@ -5,7 +5,7 @@ btn.addEventListener("click", function() {
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         var url = tabs[0].url;
         var xhr = new XMLHttpRequest();
-        console.log("lebron")
+        chrome.extension.getBackgroundPage().console.log('foo');
         xhr.open("GET", "http://127.0.0.1:5000/summary?url=" + url, true);
         xhr.onload = function() {
             var text = xhr.responseText;
@@ -14,8 +14,8 @@ btn.addEventListener("click", function() {
             btn.disabled = false;
             btn.innerHTML = "Summarise";
         }
-        console.log("lebron2")
+        chrome.extension.getBackgroundPage().log("lebron2")
         xhr.send();
-        console.log("lebron3")
+        chrome.extension.getBackgroundPage().("lebron3")
     });
 });
