@@ -2,11 +2,12 @@ const btn = document.getElementById("summarise");
 btn.addEventListener("click", function() {
     btn.disabled = true;
     btn.innerHTML = "Summarising...";
+    document.getElementById("lebron").innerHTML = "foo";
     chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         var url = tabs[0].url;
+        document.getElementById("lebron").innerHTML = url;
         var xhr = new XMLHttpRequest();
-        chrome.extension.getBackgroundPage().console.log('foo');
-        xhr.open("GET", "http://127.0.0.1:5000/text?url=" + url, true);
+        xhr.open("GET", "http://127.0.0.1:5000/summary?url=" + url, true);
         xhr.onload = function() {
             var text = xhr.responseText;
             const p = document.getElementById("output");
@@ -14,8 +15,8 @@ btn.addEventListener("click", function() {
             btn.disabled = false;
             btn.innerHTML = "Summarise";
         }
-        chrome.extension.getBackgroundPage().log("lebron2")
+        document.getElementById("lebron").innerHTML = "kobe";
         xhr.send();
-        chrome.extension.getBackgroundPage().("lebron3")
+        document.getElementById("lebron").innerHTML = text;
     });
 });
